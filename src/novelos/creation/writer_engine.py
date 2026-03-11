@@ -2,8 +2,9 @@ from novelos.foundation.agent_runtime import AgentRuntime, AgentTask
 
 
 class WriterEngine:
-    def __init__(self, agent_runtime: AgentRuntime) -> None:
+    def __init__(self, agent_runtime: AgentRuntime, max_chars: int = 1000) -> None:
         self.agent_runtime = agent_runtime
+        self.max_chars = max_chars
 
     def draft(self, write_package: dict) -> dict:
         task = AgentTask(
@@ -11,7 +12,7 @@ class WriterEngine:
             task_type="write_chapter",
             prompt=(
                 "Write the next chapter draft from the provided package. "
-                "Keep the draft concise and do not exceed 1000 Chinese characters."
+                f"Keep the draft concise and do not exceed {self.max_chars} Chinese characters."
             ),
             context=write_package,
             stream=False,

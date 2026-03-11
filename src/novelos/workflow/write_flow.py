@@ -2,6 +2,7 @@ from pathlib import Path
 
 from novelos.creation.character_profiler import CharacterProfiler
 from novelos.creation.entity_extractor import EntityExtractor
+from novelos.creation.foreshadow_extractor import ForeshadowExtractor
 from novelos.creation.summary_engine import SummaryEngine
 from novelos.creation.structured_summary_engine import StructuredSummaryEngine
 from novelos.creation.writer_engine import WriterEngine
@@ -19,6 +20,7 @@ from novelos.memory.store import (
     write_snapshot,
 )
 from novelos.memory.entities import save_entities
+from novelos.memory.foreshadowing import save_foreshadowing
 from novelos.memory.summaries import save_structured_summary
 from novelos.review.service_v2 import ReviewService
 from novelos.workflow.context_package import build_write_package
@@ -38,6 +40,7 @@ def run_write(
     summary_timeout_seconds: float,
     extraction_timeout_seconds: float,
     character_profile_timeout_seconds: float,
+    write_target_chars: int,
     max_retries: int,
     on_conflict: str | None,
 ) -> dict:
@@ -78,7 +81,7 @@ def run_write(
         timeout_seconds=write_timeout_seconds,
         max_retries=write_max_retries,
     )
-    writer_engine = WriterEngine(agent_runtime=writer_runtime)
+    writer_engine = WriterEngine(agent_runtime=writer_runtime, max_chars=write_target_chars)
     draft = writer_engine.draft(write_package)
 
     tracker.mark_step(task_state, "draft_generated")
@@ -173,6 +176,16 @@ def run_write(
                 chapter_text=draft["content"],
             )
     stored_entities = save_entities(project_root=project_root, chapter_no=chapter_no, entities=entities)
+    foreshadowing_items = ForeshadowExtractor(agent_runtime=extraction_runtime).extract(
+        project_title=state["project"].get("title", "Untitled Project"),
+        chapter_no=chapter_no,
+        chapter_text=draft["content"],
+    )
+    stored_foreshadowing = save_foreshadowing(
+        project_root=project_root,
+        chapter_no=chapter_no,
+        items=foreshadowing_items,
+    )
 
     tracker.mark_done(task_state)
     return {
@@ -198,6 +211,7 @@ def run_write(
             "latency_ms": structured_summary["latency_ms"],
         },
         "entities": stored_entities,
+        "foreshadowing": stored_foreshadowing,
     }
 
 

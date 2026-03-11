@@ -9,6 +9,9 @@ from uuid import uuid4
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SRC_ROOT = str(ROOT / "src")
+if SRC_ROOT not in sys.path:
+    sys.path.insert(0, SRC_ROOT)
 
 
 def run_cli(*args: str) -> dict:
@@ -48,6 +51,7 @@ class ReviewSmokeTest(unittest.TestCase):
             structured_summary_path = project_root / ".novelos" / "summaries" / "chapter_0001_summary.json"
             self.assertTrue(structured_summary_path.exists())
             self.assertTrue(write_result["entities"])
+            self.assertTrue(write_result["foreshadowing"])
         finally:
             shutil.rmtree(temp_root, ignore_errors=True)
 
@@ -103,5 +107,16 @@ class ReviewSmokeTest(unittest.TestCase):
             self.assertTrue(query_summaries["summaries"])
             self.assertEqual(query_summaries["sync_issues"], [])
             self.assertTrue(all(item["in_sync"] for item in query_summaries["summaries"]))
+
+            query_foreshadowing = run_cli("query", "--project", str(project_root), "--type", "foreshadowing")
+            self.assertTrue(query_foreshadowing["foreshadowing"])
+
+            from novelos.memory.store import build_project_paths, load_project_state
+            from novelos.workflow.context_package import build_write_package
+
+            paths = build_project_paths(project_root)
+            project_state = load_project_state(paths)
+            write_package = build_write_package(project_state, 2, paths)
+            self.assertTrue(write_package["retrieved_context"])
         finally:
             shutil.rmtree(temp_root, ignore_errors=True)

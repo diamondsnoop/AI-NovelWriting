@@ -86,6 +86,7 @@ def main() -> None:
             summary_timeout_seconds=config.summary_timeout_seconds,
             extraction_timeout_seconds=config.extraction_timeout_seconds,
             character_profile_timeout_seconds=config.character_profile_timeout_seconds,
+            write_target_chars=config.write_target_chars,
             max_retries=config.max_retries,
             on_conflict=args.on_conflict,
         )

@@ -1,6 +1,7 @@
 from novelos.foundation.io import read_text
 from novelos.memory.entities import list_entities
 from novelos.memory.store import ProjectPaths, compact_outline_file, outline_file, summary_file
+from novelos.retrieval.search_engine import search_relevant_snippets
 
 
 def build_write_package(project_state: dict, chapter_no: int, paths: ProjectPaths) -> dict:
@@ -23,6 +24,8 @@ def build_write_package(project_state: dict, chapter_no: int, paths: ProjectPath
     previous_summary = ""
     if chapter_no > 1:
         previous_summary = read_text(summary_file(paths, chapter_no - 1), default="")
+    retrieval_query = f"{chapter_outline}\n\n{previous_summary}".strip()
+    retrieved_context = search_relevant_snippets(paths=paths, chapter_no=chapter_no, query_text=retrieval_query, limit=2)
     return {
         "project_root": str(paths.root),
         "project_title": project.get("title", "Untitled Project"),
@@ -35,5 +38,6 @@ def build_write_package(project_state: dict, chapter_no: int, paths: ProjectPath
         "known_entities": known_entities,
         "known_character_profiles": known_character_profiles,
         "previous_summary": previous_summary,
+        "retrieved_context": retrieved_context,
         "project_state": state,
     }

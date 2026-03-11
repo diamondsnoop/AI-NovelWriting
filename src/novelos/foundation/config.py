@@ -18,6 +18,7 @@ class AppConfig:
     summary_timeout_seconds: float = 150.0
     extraction_timeout_seconds: float = 150.0
     character_profile_timeout_seconds: float = 150.0
+    write_target_chars: int = 1000
     max_retries: int = 2
 
 
@@ -38,5 +39,6 @@ def load_config() -> AppConfig:
         character_profile_timeout_seconds=float(
             os.getenv("NOVEL_CHARACTER_PROFILE_TIMEOUT_SECONDS", os.getenv("NOVEL_LLM_TIMEOUT_SECONDS", "150"))
         ),
+        write_target_chars=int(os.getenv("NOVEL_WRITE_TARGET_CHARS", "1000")),
         max_retries=int(os.getenv("NOVEL_LLM_MAX_RETRIES", "2")),
     )
