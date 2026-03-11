@@ -22,7 +22,9 @@ class ConsistencyChecker:
             task_type="review_consistency",
             prompt=(
                 "Check whether the draft contradicts the known historical entity records. "
-                "Return strict JSON with keys: score, issues, rationale."
+                "Return strict JSON with keys: score, issues, rationale. "
+                "The score must be a decimal number between 0 and 1, where 1 means fully consistent and 0 means severe contradiction. "
+                "Do not use a percentage or a 0-100 scale."
             ),
             context={
                 "chapter_no": chapter_no,

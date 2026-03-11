@@ -2,6 +2,7 @@ from novelos.foundation.io import read_text
 from novelos.memory.entities import list_entities
 from novelos.memory.store import ProjectPaths, compact_outline_file, outline_file, summary_file
 from novelos.retrieval.search_engine import search_relevant_snippets
+from novelos.workflow.character_profiles import build_character_profiles
 
 
 def build_write_package(project_state: dict, chapter_no: int, paths: ProjectPaths) -> dict:
@@ -13,14 +14,7 @@ def build_write_package(project_state: dict, chapter_no: int, paths: ProjectPath
     known_entities = [
         entity for entity in list_entities(paths.root) if entity.get("chapter_no", 0) < chapter_no
     ]
-    known_character_profiles = [
-        {
-            "name": entity.get("name"),
-            "character_profile_summary": entity.get("character_profile_summary"),
-        }
-        for entity in known_entities
-        if entity.get("entity_type") == "character" and entity.get("character_profile_summary")
-    ]
+    known_character_profiles = build_character_profiles(known_entities)
     previous_summary = ""
     if chapter_no > 1:
         previous_summary = read_text(summary_file(paths, chapter_no - 1), default="")
@@ -41,3 +35,32 @@ def build_write_package(project_state: dict, chapter_no: int, paths: ProjectPath
         "retrieved_context": retrieved_context,
         "project_state": state,
     }
+
+
+def _build_character_profiles(known_entities: list[dict]) -> list[dict]:
+    grouped: dict[str, dict] = {}
+    for entity in known_entities:
+        if entity.get("entity_type") != "character":
+            continue
+        name = str(entity.get("name", "")).strip()
+        summary = str(entity.get("character_profile_summary", "")).strip()
+        if not name or not summary:
+            continue
+        bucket = grouped.setdefault(
+            name,
+            {
+                "name": name,
+                "evidence_count": 0,
+                "chapters": [],
+                "character_profile_summary": "",
+            },
+        )
+        bucket["evidence_count"] += 1
+        bucket["chapters"].append(entity.get("chapter_no"))
+        if bucket["character_profile_summary"]:
+            bucket["character_profile_summary"] += "\n"
+        bucket["character_profile_summary"] += f"- 第{entity.get('chapter_no')}章：{summary}"
+
+    profiles = list(grouped.values())
+    profiles.sort(key=lambda item: (-item["evidence_count"], item["name"]))
+    return profiles

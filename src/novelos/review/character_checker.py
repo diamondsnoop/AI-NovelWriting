@@ -22,7 +22,11 @@ class CharacterChecker:
             task_type="review_character",
             prompt=(
                 "Check whether character behavior in the draft clearly deviates from the known character profiles. "
-                "Return strict JSON with keys: score, issues, rationale."
+                "Treat profiles with evidence_count=1 as weak signals and avoid hard deviation claims unless the conflict is obvious. "
+                "Prefer stronger judgments only when repeated prior evidence exists. "
+                "Return strict JSON with keys: score, issues, rationale. "
+                "The score must be a decimal number between 0 and 1, where 1 means strongly in-character and 0 means severe out-of-character behavior. "
+                "Do not use a percentage or a 0-100 scale."
             ),
             context={
                 "chapter_no": chapter_no,

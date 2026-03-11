@@ -15,6 +15,10 @@ class ForeshadowExtractor:
             task_type="extract_foreshadowing",
             prompt=(
                 "Extract newly planted foreshadowing items from the chapter. "
+                "Only keep genuinely new foreshadowing that is first planted in this chapter. "
+                "Do not split one event into multiple foreshadowing items. "
+                "Do not repeat or restate existing foreshadowing. "
+                "Return at most 5 foreshadowing items. "
                 "Only output JSON with no extra text. "
                 'Use this schema exactly: {"foreshadowing": [{"setup": "...", "hint": "...", "expected_payoff": "..."}]}.'
             ),

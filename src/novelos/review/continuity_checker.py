@@ -22,7 +22,9 @@ class ContinuityChecker:
             task_type="review_continuity",
             prompt=(
                 "Evaluate whether the draft continues naturally from the previous chapter summary. "
-                "Return strict JSON with keys: score, issues, rationale."
+                "Return strict JSON with keys: score, issues, rationale. "
+                "The score must be a decimal number between 0 and 1, where 1 means excellent continuity and 0 means severe continuity break. "
+                "Do not use a percentage or a 0-100 scale."
             ),
             context={
                 "chapter_no": chapter_no,
