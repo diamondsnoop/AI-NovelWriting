@@ -47,3 +47,83 @@ class OutlineEngine:
                 "latency_ms": compact_response.latency_ms,
             },
         }
+
+    def build_volume_plan(self, project_title: str, volume_no: int, chapter_no: int) -> dict:
+        task = AgentTask(
+            role="planner",
+            task_type="plan_volume",
+            prompt=(
+                "Create a concise volume-level plan that includes: volume objective, primary conflict, "
+                "midpoint shift, and expected climax. Keep it practical for chapter writing."
+            ),
+            context={
+                "project_title": project_title,
+                "volume_no": volume_no,
+                "chapter_no": chapter_no,
+            },
+            stream=False,
+        )
+        response = self.agent_runtime.run(task)
+        return {
+            "volume_no": volume_no,
+            "chapter_no": chapter_no,
+            "content": response.text,
+            "generation": {
+                "provider": response.provider,
+                "model": response.model,
+                "usage": response.usage,
+                "latency_ms": response.latency_ms,
+            },
+        }
+
+    def build_chapter_beats(self, project_title: str, chapter_no: int) -> dict:
+        task = AgentTask(
+            role="planner",
+            task_type="plan_chapter_beats",
+            prompt=(
+                "Create a chapter beat sheet with 4-6 beats. "
+                "Each beat should include objective, pressure, and visible progression."
+            ),
+            context={
+                "project_title": project_title,
+                "chapter_no": chapter_no,
+            },
+            stream=False,
+        )
+        response = self.agent_runtime.run(task)
+        return {
+            "chapter_no": chapter_no,
+            "content": response.text,
+            "generation": {
+                "provider": response.provider,
+                "model": response.model,
+                "usage": response.usage,
+                "latency_ms": response.latency_ms,
+            },
+        }
+
+    def build_chapter_timeline(self, project_title: str, chapter_no: int) -> dict:
+        task = AgentTask(
+            role="planner",
+            task_type="plan_chapter_timeline",
+            prompt=(
+                "Create a chapter timeline with ordered time points. "
+                "Show when key events happen and any causal dependency."
+            ),
+            context={
+                "project_title": project_title,
+                "chapter_no": chapter_no,
+            },
+            stream=False,
+        )
+        response = self.agent_runtime.run(task)
+        return {
+            "chapter_no": chapter_no,
+            "content": response.text,
+            "generation": {
+                "provider": response.provider,
+                "model": response.model,
+                "usage": response.usage,
+                "latency_ms": response.latency_ms,
+            },
+        }

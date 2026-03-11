@@ -13,6 +13,7 @@ class WriterEngine:
             task_type="write_chapter",
             prompt=(
                 "Write the next chapter draft from the provided package. "
+                "Prioritize chapter outline, beat sheet, timeline, and volume plan when available. "
                 f"Keep the draft concise and do not exceed {self.max_chars} Chinese characters. "
                 f"{name_constraint}"
             ),

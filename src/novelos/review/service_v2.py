@@ -2,6 +2,7 @@ from novelos.foundation.agent_runtime import AgentRuntime
 from novelos.review.consistency_checker import ConsistencyChecker
 from novelos.review.character_checker import CharacterChecker
 from novelos.review.continuity_checker import ContinuityChecker
+from novelos.review.foreshadowing_checker import ForeshadowingChecker
 from novelos.review.gatekeeper import gate_review
 from novelos.review.pacing_checker import PacingChecker
 from novelos.review.report_builder import build_review_report
@@ -11,7 +12,7 @@ class ReviewService:
     def __init__(self, agent_runtime: AgentRuntime) -> None:
         self.agent_runtime = agent_runtime
 
-    def review_draft(self, draft: dict, write_package: dict) -> dict:
+    def review_draft(self, draft: dict, write_package: dict, new_foreshadowing: list[dict] | None = None) -> dict:
         content = draft.get("content", "")
         if not content:
             return {
@@ -44,6 +45,12 @@ class ReviewService:
             PacingChecker(window_size=3).run(
                 project_root=write_package.get("project_root"),
                 chapter_no=write_package.get("chapter_no", 0),
+            ),
+            ForeshadowingChecker().run(
+                project_root=write_package.get("project_root"),
+                chapter_no=write_package.get("chapter_no", 0),
+                draft_text=content,
+                new_items=new_foreshadowing,
             ),
         ]
         report = build_review_report(results)

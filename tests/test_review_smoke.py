@@ -80,6 +80,9 @@ class ReviewSmokeTest(unittest.TestCase):
             pacing = next(
                 item for item in second_write["review"]["checker_results"] if item["checker"] == "pacing"
             )
+            foreshadowing = next(
+                item for item in second_write["review"]["checker_results"] if item["checker"] == "foreshadowing"
+            )
             self.assertEqual(consistency["status"], "completed")
             self.assertGreaterEqual(consistency["score"], 0.5)
             self.assertEqual(character["status"], "completed")
@@ -89,6 +92,9 @@ class ReviewSmokeTest(unittest.TestCase):
             self.assertIn(pacing["status"], {"completed", "skipped"})
             if pacing["status"] == "completed":
                 self.assertIn(pacing["severity"], {"info", "warning"})
+            self.assertIn(foreshadowing["status"], {"completed", "skipped"})
+            if foreshadowing["status"] == "completed":
+                self.assertIn(foreshadowing["severity"], {"info", "warning"})
             self.assertTrue(second_write["review"]["inactive_checkers"])
 
             query_entities = run_cli("query", "--project", str(project_root), "--type", "entities")

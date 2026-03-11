@@ -46,6 +46,7 @@ def run_write(
 ) -> dict:
     paths = build_project_paths(project_root)
     project_state = load_project_state(paths)
+    project_title = project_state.get("project", {}).get("title", "Untitled Project")
     task_state = create_task_state(paths, "write")
     tracker = StateTracker(paths)
     chapter_path = paths.chapters_dir / f"chapter_{chapter_no:04d}.md"
@@ -98,7 +99,24 @@ def run_write(
         timeout_seconds=review_timeout_seconds,
         max_retries=max_retries,
     )
-    review_result = ReviewService(agent_runtime=review_runtime).review_draft(draft, write_package)
+    extraction_runtime = _build_runtime(
+        provider=provider,
+        model_name=model_name,
+        base_url=base_url,
+        api_mode=api_mode,
+        timeout_seconds=extraction_timeout_seconds,
+        max_retries=max_retries,
+    )
+    foreshadowing_items = ForeshadowExtractor(agent_runtime=extraction_runtime).extract(
+        project_title=project_title,
+        chapter_no=chapter_no,
+        chapter_text=draft["content"],
+    )
+    review_result = ReviewService(agent_runtime=review_runtime).review_draft(
+        draft=draft,
+        write_package=write_package,
+        new_foreshadowing=foreshadowing_items,
+    )
     tracker.mark_step(task_state, "reviewed")
     if review_result["gate_result"] == "blocked":
         tracker.mark_failed(task_state, "review_blocked")
@@ -133,28 +151,20 @@ def run_write(
         max_retries=max_retries,
     )
     summary = SummaryEngine(agent_runtime=summary_runtime).summarize_chapter(
-        project_title=state["project"].get("title", "Untitled Project"),
+        project_title=project_title,
         chapter_no=chapter_no,
         chapter_text=draft["content"],
     )
     write_text(summary_file(paths, chapter_no), summary["content"])
     structured_summary = StructuredSummaryEngine(agent_runtime=summary_runtime).summarize(
-        project_title=state["project"].get("title", "Untitled Project"),
+        project_title=project_title,
         chapter_no=chapter_no,
         chapter_text=draft["content"],
     )
     save_structured_summary(project_root=project_root, chapter_no=chapter_no, payload=structured_summary["payload"])
 
-    extraction_runtime = _build_runtime(
-        provider=provider,
-        model_name=model_name,
-        base_url=base_url,
-        api_mode=api_mode,
-        timeout_seconds=extraction_timeout_seconds,
-        max_retries=max_retries,
-    )
     entities = EntityExtractor(agent_runtime=extraction_runtime).extract(
-        project_title=state["project"].get("title", "Untitled Project"),
+        project_title=project_title,
         chapter_no=chapter_no,
         chapter_text=draft["content"],
     )
@@ -170,17 +180,12 @@ def run_write(
     for entity in entities:
         if entity.get("entity_type") == "character":
             entity["character_profile_summary"] = profiler.summarize(
-                project_title=state["project"].get("title", "Untitled Project"),
+                project_title=project_title,
                 chapter_no=chapter_no,
                 character_name=entity.get("name", "Unknown"),
                 chapter_text=draft["content"],
             )
     stored_entities = save_entities(project_root=project_root, chapter_no=chapter_no, entities=entities)
-    foreshadowing_items = ForeshadowExtractor(agent_runtime=extraction_runtime).extract(
-        project_title=state["project"].get("title", "Untitled Project"),
-        chapter_no=chapter_no,
-        chapter_text=draft["content"],
-    )
     stored_foreshadowing = save_foreshadowing(
         project_root=project_root,
         chapter_no=chapter_no,

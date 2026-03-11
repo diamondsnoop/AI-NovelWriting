@@ -38,7 +38,16 @@ class StructuredSummaryEngineTest(unittest.TestCase):
             [
                 json.dumps({"key_events": [], "main_plot_advanced": False}, ensure_ascii=False),
                 json.dumps(
-                    {"key_events": ["主线推进事件"], "main_plot_advanced": True},
+                    {
+                        "key_events": ["主线推进事件"],
+                        "main_plot_advanced": True,
+                        "high_point_markers": ["冲突升级节点"],
+                        "reader_pull_marker": {
+                            "has_pull": True,
+                            "pull_type": "open_question",
+                            "evidence": "章节结尾留下未解疑问。",
+                        },
+                    },
                     ensure_ascii=False,
                 ),
             ]
@@ -50,6 +59,9 @@ class StructuredSummaryEngineTest(unittest.TestCase):
         self.assertEqual(runtime.calls, 2)
         self.assertEqual(result["payload"]["key_events"], ["主线推进事件"])
         self.assertTrue(result["payload"]["main_plot_advanced"])
+        self.assertEqual(result["payload"]["high_point_markers"], ["冲突升级节点"])
+        self.assertTrue(result["payload"]["reader_pull_marker"]["has_pull"])
+        self.assertEqual(result["payload"]["reader_pull_marker"]["pull_type"], "open_question")
 
     def test_persists_empty_payload_after_retry(self) -> None:
         runtime = _FakeRuntime(
@@ -65,6 +77,8 @@ class StructuredSummaryEngineTest(unittest.TestCase):
         self.assertEqual(runtime.calls, 2)
         self.assertEqual(result["payload"]["key_events"], [])
         self.assertFalse(result["payload"]["main_plot_advanced"])
+        self.assertEqual(result["payload"]["high_point_markers"], [])
+        self.assertFalse(result["payload"]["reader_pull_marker"]["has_pull"])
 
 
 if __name__ == "__main__":

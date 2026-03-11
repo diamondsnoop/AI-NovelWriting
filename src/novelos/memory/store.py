@@ -128,5 +128,17 @@ def compact_outline_file(paths: ProjectPaths, chapter_no: int) -> Path:
     return paths.outlines_dir / f"chapter_{chapter_no:04d}_outline_compact.md"
 
 
+def volume_plan_file(paths: ProjectPaths, volume_no: int) -> Path:
+    return paths.outlines_dir / f"volume_{volume_no:04d}_plan.md"
+
+
+def beat_sheet_file(paths: ProjectPaths, chapter_no: int) -> Path:
+    return paths.outlines_dir / f"chapter_{chapter_no:04d}_beats.md"
+
+
+def timeline_file(paths: ProjectPaths, chapter_no: int) -> Path:
+    return paths.outlines_dir / f"chapter_{chapter_no:04d}_timeline.md"
+
+
 def summary_file(paths: ProjectPaths, chapter_no: int) -> Path:
     return paths.summaries_dir / f"chapter_{chapter_no:04d}_summary.md"

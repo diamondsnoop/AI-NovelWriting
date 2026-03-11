@@ -17,9 +17,12 @@ class StructuredSummaryEngine:
                 role="structured_summarizer",
                 task_type="summarize_structured_chapter",
                 prompt=(
-                    "Summarize the chapter into strict JSON with keys: key_events, main_plot_advanced. "
+                    "Summarize the chapter into strict JSON with keys: "
+                    "key_events, main_plot_advanced, high_point_markers, reader_pull_marker. "
                     "key_events must be an array of concise event strings, not empty when the chapter contains visible plot movement. "
                     "main_plot_advanced must be true or false. "
+                    "high_point_markers must be an array of short strings that mark strong plot/high-point moments (can be empty). "
+                    "reader_pull_marker must be an object with keys: has_pull (bool), pull_type (string), evidence (string). "
                     "Only output valid JSON with no extra text."
                 ),
                 context={
@@ -67,14 +70,33 @@ class StructuredSummaryEngine:
         if not isinstance(key_events, list):
             key_events = []
         key_events = [str(item).strip() for item in key_events if str(item).strip()]
+        high_point_markers = payload.get("high_point_markers")
+        if not isinstance(high_point_markers, list):
+            high_point_markers = []
+        high_point_markers = [str(item).strip() for item in high_point_markers if str(item).strip()]
+        reader_pull_marker = payload.get("reader_pull_marker")
+        if not isinstance(reader_pull_marker, dict):
+            reader_pull_marker = {}
 
         return {
             "key_events": key_events,
             "main_plot_advanced": bool(payload.get("main_plot_advanced", False)),
+            "high_point_markers": high_point_markers,
+            "reader_pull_marker": {
+                "has_pull": bool(reader_pull_marker.get("has_pull", False)),
+                "pull_type": str(reader_pull_marker.get("pull_type", "")).strip(),
+                "evidence": str(reader_pull_marker.get("evidence", "")).strip(),
+            },
         }
 
     def _default_payload(self) -> dict:
         return {
             "key_events": [],
             "main_plot_advanced": False,
+            "high_point_markers": [],
+            "reader_pull_marker": {
+                "has_pull": False,
+                "pull_type": "",
+                "evidence": "",
+            },
         }
