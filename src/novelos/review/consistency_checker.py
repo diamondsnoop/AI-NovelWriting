@@ -13,8 +13,10 @@ class ConsistencyChecker:
                 "checker": "consistency",
                 "status": "skipped",
                 "score": None,
+                "severity": "info",
                 "issues": [],
                 "message": "No historical entity data available.",
+                "signals": {"codes": [], "metrics": {"issue_count": 0}},
             }
 
         task = AgentTask(
@@ -44,10 +46,34 @@ class ConsistencyChecker:
             issues = ["Consistency checker returned non-JSON output."]
             rationale = response.text
 
+        if not isinstance(issues, list):
+            issues = [str(issues)]
+        issues = [str(item).strip() for item in issues if str(item).strip()]
+        severity = _score_to_severity(score)
+        issue_text = " ".join(issues).lower()
+        codes = []
+        if score < 0.5 or "conflict" in issue_text or "冲突" in issue_text or "矛盾" in issue_text:
+            codes.append("consistency_conflict")
+        else:
+            codes.append("consistency_ok")
+
         return {
             "checker": "consistency",
             "status": "completed",
             "score": score,
+            "severity": severity,
             "issues": issues,
             "message": rationale,
+            "signals": {
+                "codes": codes,
+                "metrics": {"issue_count": len(issues)},
+            },
         }
+
+
+def _score_to_severity(score: float) -> str:
+    if score < 0.35:
+        return "critical"
+    if score < 0.6:
+        return "warning"
+    return "info"

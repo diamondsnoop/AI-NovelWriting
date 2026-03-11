@@ -7,6 +7,7 @@ from novelos.foundation.config import load_config
 from novelos.foundation.logging import configure_logging
 from novelos.foundation.project_locator import resolve_project_root
 from novelos.workflow.init_flow import run_init
+from novelos.workflow.learn_flow import run_learn
 from novelos.workflow.plan_flow import run_plan
 from novelos.workflow.query_flow import run_query
 from novelos.workflow.resume_flow import run_resume
@@ -33,6 +34,12 @@ def build_parser() -> argparse.ArgumentParser:
     resume_parser = subparsers.add_parser("resume")
     resume_parser.add_argument("--project", required=True)
 
+    learn_parser = subparsers.add_parser("learn")
+    learn_parser.add_argument("--project", required=True)
+    learn_parser.add_argument("--type", required=True)
+    learn_parser.add_argument("--content", required=True)
+    learn_parser.add_argument("--source-ref", action="append", default=[])
+
     query_parser = subparsers.add_parser("query")
     query_parser.add_argument("--project", required=True)
     query_parser.add_argument(
@@ -48,6 +55,9 @@ def build_parser() -> argparse.ArgumentParser:
             "relationships",
             "foreshadowing",
             "summaries",
+            "project_memory",
+            "status_report",
+            "dashboard",
         ],
     )
     return parser
@@ -92,6 +102,13 @@ def main() -> None:
         )
     elif args.command == "resume":
         result = run_resume(resolve_project_root(args.project))
+    elif args.command == "learn":
+        result = run_learn(
+            project_root=resolve_project_root(args.project),
+            memory_type=args.type,
+            content=args.content,
+            source_refs=args.source_ref,
+        )
     elif args.command == "query":
         result = run_query(resolve_project_root(args.project), args.type)
     else:

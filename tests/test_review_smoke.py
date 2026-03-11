@@ -46,6 +46,8 @@ class ReviewSmokeTest(unittest.TestCase):
             self.assertEqual(plan_result["chapter_no"], 1)
             self.assertIn("compact_outline_path", plan_result)
             self.assertEqual(write_result["review"]["gate_result"], "pass")
+            self.assertIn("semantic_decisions", write_result)
+            self.assertFalse(write_result["semantic_decisions"]["decision_required"])
             summary_path = project_root / "summaries" / "chapter_0001_summary.md"
             self.assertTrue(summary_path.exists())
             structured_summary_path = project_root / ".novelos" / "summaries" / "chapter_0001_summary.json"
@@ -68,6 +70,7 @@ class ReviewSmokeTest(unittest.TestCase):
             second_write = run_cli("write", "--project", str(project_root), "--chapter", "2")
 
             self.assertEqual(second_write["review"]["gate_result"], "pass")
+            self.assertIn("semantic_decisions", second_write)
             consistency = next(
                 item for item in second_write["review"]["checker_results"] if item["checker"] == "consistency"
             )

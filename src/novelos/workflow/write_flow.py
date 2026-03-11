@@ -7,6 +7,7 @@ from novelos.creation.summary_engine import SummaryEngine
 from novelos.creation.structured_summary_engine import StructuredSummaryEngine
 from novelos.creation.writer_engine import WriterEngine
 from novelos.decision.service import DecisionService
+from novelos.decision.trigger_engine import collect_decision_triggers
 from novelos.foundation.agent_runtime import AgentRuntime
 from novelos.foundation.io import write_text
 from novelos.foundation.llm_client import LLMClient
@@ -131,6 +132,16 @@ def run_write(
         new_foreshadowing=foreshadowing_items,
         structured_summary=structured_summary["payload"],
     )
+    semantic_triggers = collect_decision_triggers(
+        write_package=write_package,
+        review_result=review_result,
+    )
+    semantic_decisions = DecisionService().resolve_semantic_triggers(
+        project_root=project_root,
+        task_id=task_state["task_id"],
+        triggers=semantic_triggers,
+        mode="defer",
+    )
     tracker.mark_step(task_state, "reviewed")
     if review_result["gate_result"] == "blocked":
         tracker.mark_failed(task_state, "review_blocked")
@@ -150,6 +161,7 @@ def run_write(
                 "usage": structured_summary["usage"],
                 "latency_ms": structured_summary["latency_ms"],
             },
+            "semantic_decisions": semantic_decisions,
         }
 
     state = project_state
@@ -222,6 +234,7 @@ def run_write(
             "usage": structured_summary["usage"],
             "latency_ms": structured_summary["latency_ms"],
         },
+        "semantic_decisions": semantic_decisions,
         "entities": stored_entities,
         "foreshadowing": stored_foreshadowing,
     }

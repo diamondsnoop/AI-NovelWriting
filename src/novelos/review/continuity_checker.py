@@ -13,8 +13,10 @@ class ContinuityChecker:
                 "checker": "continuity",
                 "status": "skipped",
                 "score": None,
+                "severity": "info",
                 "issues": [],
                 "message": "No previous chapter summary available.",
+                "signals": {"codes": [], "metrics": {"issue_count": 0}},
             }
 
         task = AgentTask(
@@ -49,6 +51,19 @@ class ContinuityChecker:
             "checker": "continuity",
             "status": "completed",
             "score": score,
+            "severity": _score_to_severity(score),
             "issues": issues,
             "message": rationale,
+            "signals": {
+                "codes": ["continuity_break"] if score < 0.5 else ["continuity_ok"],
+                "metrics": {"issue_count": len(issues)},
+            },
         }
+
+
+def _score_to_severity(score: float) -> str:
+    if score < 0.35:
+        return "critical"
+    if score < 0.6:
+        return "warning"
+    return "info"

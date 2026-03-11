@@ -36,6 +36,11 @@ def build_write_package(project_state: dict, chapter_no: int, paths: ProjectPath
         chapter_outline="\n\n".join(part for part in [chapter_outline, chapter_beats, chapter_timeline] if part.strip()),
         previous_summary=previous_summary,
     )
+    route_branch_candidates = _extract_route_branch_candidates(
+        chapter_outline=chapter_outline,
+        chapter_beats=chapter_beats,
+        chapter_timeline=chapter_timeline,
+    )
     retrieved_context = search_relevant_snippets(
         paths=paths,
         chapter_no=chapter_no,
@@ -56,6 +61,7 @@ def build_write_package(project_state: dict, chapter_no: int, paths: ProjectPath
         "chapter_beats": chapter_beats,
         "chapter_timeline": chapter_timeline,
         "volume_plan": volume_plan,
+        "route_branch_candidates": route_branch_candidates,
         "known_entities": known_entities,
         "known_character_profiles": known_character_profiles,
         "previous_summary": previous_summary,
@@ -105,3 +111,40 @@ def _infer_volume_no(project_state: dict, chapter_no: int) -> int:
     except (TypeError, ValueError):
         pass
     return ((chapter_no - 1) // 100) + 1
+
+
+def _extract_route_branch_candidates(chapter_outline: str, chapter_beats: str, chapter_timeline: str) -> list[str]:
+    keywords = [
+        "路线",
+        "分支",
+        "二选一",
+        "抉择",
+        "方案a",
+        "方案b",
+        "a/b",
+        "route",
+        "branch",
+        "option",
+    ]
+    text = "\n".join([chapter_outline, chapter_beats, chapter_timeline]).strip()
+    if not text:
+        return []
+
+    candidates: list[str] = []
+    for line in text.splitlines():
+        normalized = line.strip()
+        if not normalized:
+            continue
+        lowered = normalized.lower()
+        if any(keyword in lowered for keyword in keywords):
+            candidates.append(normalized)
+
+    # Deduplicate while preserving order.
+    seen: set[str] = set()
+    deduped: list[str] = []
+    for candidate in candidates:
+        if candidate in seen:
+            continue
+        seen.add(candidate)
+        deduped.append(candidate)
+    return deduped

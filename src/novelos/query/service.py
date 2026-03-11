@@ -4,6 +4,7 @@ from novelos.decision.store import list_decision_records
 from novelos.foundation.io import read_json
 from novelos.memory.entities import list_entities
 from novelos.memory.foreshadowing import list_foreshadowing
+from novelos.memory.project_memory_store import list_project_memory
 from novelos.memory.summaries import load_structured_summary
 from novelos.memory.store import build_project_paths, load_project_state
 
@@ -18,6 +19,7 @@ SUPPORTED_QUERY_TYPES = {
     "relationships",
     "foreshadowing",
     "summaries",
+    "project_memory",
 }
 
 
@@ -142,6 +144,12 @@ def query_project(project_root: Path, query_type: str) -> dict:
         return {
             "query_type": "foreshadowing",
             "foreshadowing": list_foreshadowing(project_root),
+        }
+
+    if query_type == "project_memory":
+        return {
+            "query_type": "project_memory",
+            "project_memory": list_project_memory(project_root),
         }
 
     return {

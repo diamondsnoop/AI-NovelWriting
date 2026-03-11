@@ -13,8 +13,10 @@ class CharacterChecker:
                 "checker": "character",
                 "status": "skipped",
                 "score": None,
+                "severity": "info",
                 "issues": [],
                 "message": "No historical character profiles available.",
+                "signals": {"codes": [], "metrics": {"issue_count": 0}},
             }
 
         task = AgentTask(
@@ -50,6 +52,19 @@ class CharacterChecker:
             "checker": "character",
             "status": "completed",
             "score": score,
+            "severity": _score_to_severity(score),
             "issues": issues,
             "message": rationale,
+            "signals": {
+                "codes": ["character_ooc"] if score < 0.5 else ["character_ok"],
+                "metrics": {"issue_count": len(issues)},
+            },
         }
+
+
+def _score_to_severity(score: float) -> str:
+    if score < 0.35:
+        return "critical"
+    if score < 0.6:
+        return "warning"
+    return "info"
