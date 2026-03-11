@@ -1,0 +1,109 @@
+import json
+
+from novelos.foundation.providers.base_provider import BaseProvider, ProviderRequest, ProviderResponse
+
+
+class MockProvider(BaseProvider):
+    provider_name = "mock"
+
+    def generate(self, request: ProviderRequest) -> ProviderResponse:
+        chapter = request.context.get("chapter_no", "unknown")
+        title = request.context.get("project_title", "Untitled Project")
+
+        if request.task_type == "plan_chapter":
+            text = (
+                f"# Chapter {chapter} Outline\n\n"
+                f"- Project: {title}\n"
+                f"- Purpose: establish the chapter's visible objective and pressure\n"
+                f"- Goal: move the current main plot forward\n"
+                f"- Beat 1: open with a concrete disruption or pressure point\n"
+                f"- Beat 2: force the protagonist into a choice under pressure\n"
+                f"- Event: the protagonist accepts a new task and meets fresh resistance\n"
+                f"- Ending: leave a hook for the next chapter\n"
+            )
+        elif request.task_type == "plan_chapter_compact":
+            next_chapter = int(chapter) + 1 if str(chapter).isdigit() else chapter
+            text = (
+                f"# Chapter {chapter} Compact Outline\n\n"
+                f"Goal: move the current main plot forward.\n"
+                f"Beat 1: open with immediate pressure on the protagonist.\n"
+                f"Beat 2: reveal a new obstacle tied to the main task.\n"
+                f"Beat 3: force a concrete choice with visible cost.\n"
+                f"Hook: end on a lead or consequence that pushes chapter {next_chapter}.\n"
+            )
+        elif request.task_type == "summarize_chapter":
+            text = (
+                f"# Chapter {chapter} Summary\n\n"
+                f"{title} chapter {chapter}: the protagonist advances the current objective and leaves a new direction for the next chapter."
+            )
+        elif request.task_type == "review_continuity":
+            previous_summary = request.context.get("previous_summary", "")
+            draft_text = request.context.get("draft_text", "")
+            score = 0.85 if previous_summary and draft_text else 0.0
+            text = json.dumps(
+                {
+                    "score": score,
+                    "issues": [] if score >= 0.5 else ["Draft does not connect to the previous summary."],
+                    "rationale": "Draft continues naturally from the previous summary." if score >= 0.5 else "Continuity is weak.",
+                }
+            )
+        elif request.task_type == "review_consistency":
+            known_entities = request.context.get("known_entities", [])
+            draft_text = request.context.get("draft_text", "")
+            score = 0.8 if known_entities and draft_text else 0.0
+            text = json.dumps(
+                {
+                    "score": score,
+                    "issues": [] if score >= 0.5 else ["Draft conflicts with known entity records."],
+                    "rationale": "No obvious contradiction with known entity records." if score >= 0.5 else "Entity consistency is weak.",
+                }
+            )
+        elif request.task_type == "review_character":
+            profiles = request.context.get("known_character_profiles", [])
+            draft_text = request.context.get("draft_text", "")
+            score = 0.82 if profiles and draft_text else 0.0
+            text = json.dumps(
+                {
+                    "score": score,
+                    "issues": [] if score >= 0.5 else ["Character behavior deviates from known profile."],
+                    "rationale": "No obvious character drift from known profiles." if score >= 0.5 else "Character behavior appears off-profile.",
+                }
+            )
+        elif request.task_type == "extract_entities":
+            text = "\n".join(
+                [
+                    "character: Lin He",
+                    "character: Su Wan",
+                    "location: Black Pine Town",
+                ]
+            )
+        elif request.task_type == "summarize_character_profile":
+            character_name = request.context.get("character_name", "Unknown")
+            text = f"{character_name} appears cautious, proactive, and willing to move the plot forward under pressure."
+        elif request.task_type == "summarize_structured_chapter":
+            chapter = request.context.get("chapter_no", 0)
+            text = json.dumps(
+                {
+                    "key_events": [f"Chapter {chapter} advances the visible task."],
+                    "main_plot_advanced": True,
+                }
+            )
+        else:
+            outline = request.context.get("chapter_outline", "")
+            previous_summary = request.context.get("previous_summary", "")
+            text = (
+                f"[{title}] Chapter {chapter} Draft\n\n"
+                f"This is a skeleton draft generated by {self.provider_name}:{self.model_name}.\n"
+                f"Task type: {request.task_type}.\n\n"
+                f"Summary hint: {request.context.get('summary_hint', 'No summary hint.')}\n\n"
+                f"Previous chapter summary:\n{previous_summary or 'No previous summary.'}\n\n"
+                f"Chapter outline:\n{outline or 'No outline.'}\n"
+            )
+
+        return ProviderResponse(
+            text=text,
+            provider=self.provider_name,
+            model=self.model_name,
+            usage={"input_tokens": 0, "output_tokens": 0, "total_tokens": 0},
+            latency_ms=0,
+        )

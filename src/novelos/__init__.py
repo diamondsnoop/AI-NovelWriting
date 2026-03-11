@@ -1,0 +1,1 @@
+"""Codex novel system package."""
