@@ -83,6 +83,12 @@ class ReviewSmokeTest(unittest.TestCase):
             foreshadowing = next(
                 item for item in second_write["review"]["checker_results"] if item["checker"] == "foreshadowing"
             )
+            high_point = next(
+                item for item in second_write["review"]["checker_results"] if item["checker"] == "high_point"
+            )
+            reader_pull = next(
+                item for item in second_write["review"]["checker_results"] if item["checker"] == "reader_pull"
+            )
             self.assertEqual(consistency["status"], "completed")
             self.assertGreaterEqual(consistency["score"], 0.5)
             self.assertEqual(character["status"], "completed")
@@ -95,7 +101,13 @@ class ReviewSmokeTest(unittest.TestCase):
             self.assertIn(foreshadowing["status"], {"completed", "skipped"})
             if foreshadowing["status"] == "completed":
                 self.assertIn(foreshadowing["severity"], {"info", "warning"})
-            self.assertTrue(second_write["review"]["inactive_checkers"])
+            self.assertIn(high_point["status"], {"completed", "skipped"})
+            if high_point["status"] == "completed":
+                self.assertIn(high_point["severity"], {"critical", "warning", "info"})
+            self.assertIn(reader_pull["status"], {"completed", "skipped"})
+            if reader_pull["status"] == "completed":
+                self.assertIn(reader_pull["severity"], {"critical", "warning", "info"})
+            self.assertEqual(second_write["review"]["inactive_checkers"], [])
 
             query_entities = run_cli("query", "--project", str(project_root), "--type", "entities")
             self.assertTrue(query_entities["entities"])

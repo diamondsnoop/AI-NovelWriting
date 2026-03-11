@@ -99,6 +99,19 @@ def run_write(
         timeout_seconds=review_timeout_seconds,
         max_retries=max_retries,
     )
+    summary_runtime = _build_runtime(
+        provider=provider,
+        model_name=model_name,
+        base_url=base_url,
+        api_mode=api_mode,
+        timeout_seconds=summary_timeout_seconds,
+        max_retries=max_retries,
+    )
+    structured_summary = StructuredSummaryEngine(agent_runtime=summary_runtime).summarize(
+        project_title=project_title,
+        chapter_no=chapter_no,
+        chapter_text=draft["content"],
+    )
     extraction_runtime = _build_runtime(
         provider=provider,
         model_name=model_name,
@@ -116,6 +129,7 @@ def run_write(
         draft=draft,
         write_package=write_package,
         new_foreshadowing=foreshadowing_items,
+        structured_summary=structured_summary["payload"],
     )
     tracker.mark_step(task_state, "reviewed")
     if review_result["gate_result"] == "blocked":
@@ -130,6 +144,12 @@ def run_write(
                 "usage": draft["usage"],
                 "latency_ms": draft["latency_ms"],
             },
+            "structured_summary_generation": {
+                "provider": structured_summary["provider"],
+                "model": structured_summary["model"],
+                "usage": structured_summary["usage"],
+                "latency_ms": structured_summary["latency_ms"],
+            },
         }
 
     state = project_state
@@ -142,25 +162,12 @@ def run_write(
     progress["completed_chapters"] = max(progress.get("completed_chapters", 0), chapter_no)
     save_project_state(paths, state)
 
-    summary_runtime = _build_runtime(
-        provider=provider,
-        model_name=model_name,
-        base_url=base_url,
-        api_mode=api_mode,
-        timeout_seconds=summary_timeout_seconds,
-        max_retries=max_retries,
-    )
     summary = SummaryEngine(agent_runtime=summary_runtime).summarize_chapter(
         project_title=project_title,
         chapter_no=chapter_no,
         chapter_text=draft["content"],
     )
     write_text(summary_file(paths, chapter_no), summary["content"])
-    structured_summary = StructuredSummaryEngine(agent_runtime=summary_runtime).summarize(
-        project_title=project_title,
-        chapter_no=chapter_no,
-        chapter_text=draft["content"],
-    )
     save_structured_summary(project_root=project_root, chapter_no=chapter_no, payload=structured_summary["payload"])
 
     entities = EntityExtractor(agent_runtime=extraction_runtime).extract(

@@ -4,7 +4,9 @@ from novelos.review.character_checker import CharacterChecker
 from novelos.review.continuity_checker import ContinuityChecker
 from novelos.review.foreshadowing_checker import ForeshadowingChecker
 from novelos.review.gatekeeper import gate_review
+from novelos.review.high_point_checker import HighPointChecker
 from novelos.review.pacing_checker import PacingChecker
+from novelos.review.reader_pull_checker import ReaderPullChecker
 from novelos.review.report_builder import build_review_report
 
 
@@ -12,7 +14,13 @@ class ReviewService:
     def __init__(self, agent_runtime: AgentRuntime) -> None:
         self.agent_runtime = agent_runtime
 
-    def review_draft(self, draft: dict, write_package: dict, new_foreshadowing: list[dict] | None = None) -> dict:
+    def review_draft(
+        self,
+        draft: dict,
+        write_package: dict,
+        new_foreshadowing: list[dict] | None = None,
+        structured_summary: dict | None = None,
+    ) -> dict:
         content = draft.get("content", "")
         if not content:
             return {
@@ -52,6 +60,20 @@ class ReviewService:
                 draft_text=content,
                 new_items=new_foreshadowing,
             ),
+            HighPointChecker().run(
+                draft_text=content,
+                chapter_no=write_package.get("chapter_no", 0),
+                chapter_beats=write_package.get("chapter_beats", ""),
+                chapter_timeline=write_package.get("chapter_timeline", ""),
+                structured_summary=structured_summary,
+            ),
+            ReaderPullChecker().run(
+                draft_text=content,
+                chapter_no=write_package.get("chapter_no", 0),
+                chapter_outline=write_package.get("chapter_outline", ""),
+                chapter_beats=write_package.get("chapter_beats", ""),
+                structured_summary=structured_summary,
+            ),
         ]
         report = build_review_report(results)
         gate = gate_review(report)
@@ -63,7 +85,4 @@ class ReviewService:
         }
 
     def _inactive_checkers(self) -> list[dict]:
-        return [
-            {"checker": "high_point", "status": "inactive", "requires": ["chapter beat annotations"]},
-            {"checker": "reader_pull", "status": "inactive", "requires": ["hook annotations", "chapter ending labels"]},
-        ]
+        return []
