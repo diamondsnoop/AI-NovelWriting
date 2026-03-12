@@ -1,0 +1,825 @@
+{
+  "run_at_utc": "2026-03-12T03:29:11.072103+00:00",
+  "project_root": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06",
+  "config": {
+    "llm_provider": "openai",
+    "model_name": "gpt-5.4",
+    "api_mode": "chat_completions",
+    "base_url_set": true
+  },
+  "chapters": [
+    {
+      "chapter_no": 1,
+      "plan": {
+        "outline_path": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06\\outlines\\chapter_0001_outline.md",
+        "compact_outline_path": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06\\outlines\\chapter_0001_outline_compact.md",
+        "volume_plan_path": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06\\outlines\\volume_0001_plan.md",
+        "beat_sheet_path": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06\\outlines\\chapter_0001_beats.md",
+        "timeline_path": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06\\outlines\\chapter_0001_timeline.md",
+        "outline_chars": 11356,
+        "compact_outline_chars": 321,
+        "volume_plan_chars": 2431,
+        "beat_sheet_chars": 2574,
+        "timeline_chars": 3823,
+        "generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 60,
+            "output_tokens": 2524,
+            "total_tokens": 2584
+          },
+          "latency_ms": 78764
+        },
+        "compact_generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 76,
+            "output_tokens": 292,
+            "total_tokens": 368
+          },
+          "latency_ms": 11713
+        },
+        "volume_plan_generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 76,
+            "output_tokens": 573,
+            "total_tokens": 649
+          },
+          "latency_ms": 22860
+        },
+        "beat_sheet_generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 64,
+            "output_tokens": 575,
+            "total_tokens": 639
+          },
+          "latency_ms": 17109
+        },
+        "timeline_generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 59,
+            "output_tokens": 956,
+            "total_tokens": 1015
+          },
+          "latency_ms": 35786
+        }
+      },
+      "write": {
+        "task_id": "660a7292-ef01-47b7-9d79-f4a8e7ec4fcd",
+        "chapter_path": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06\\chapters\\chapter_0001.md",
+        "gate_result": "pass",
+        "gate_level": "warning",
+        "blocking_reasons": [],
+        "warning_reasons": [
+          "high_point_density_low"
+        ],
+        "checker_summary": {
+          "consistency": {
+            "status": "skipped",
+            "severity": "info",
+            "score": null,
+            "codes": [],
+            "issues": []
+          },
+          "character": {
+            "status": "skipped",
+            "severity": "info",
+            "score": null,
+            "codes": [],
+            "issues": []
+          },
+          "continuity": {
+            "status": "skipped",
+            "severity": "info",
+            "score": null,
+            "codes": [],
+            "issues": []
+          },
+          "pacing": {
+            "status": "skipped",
+            "severity": "info",
+            "score": null,
+            "codes": [],
+            "issues": []
+          },
+          "foreshadowing": {
+            "status": "completed",
+            "severity": "info",
+            "score": 1.0,
+            "codes": [],
+            "issues": []
+          },
+          "high_point": {
+            "status": "completed",
+            "severity": "warning",
+            "score": 0.52,
+            "codes": [
+              "high_point_density_low",
+              "high_point_not_aligned_with_beats"
+            ],
+            "issues": [
+              "High-point density looks low against chapter beat count.",
+              "High-point markers are weakly aligned with beats/timeline."
+            ]
+          },
+          "reader_pull": {
+            "status": "completed",
+            "severity": "info",
+            "score": 0.8,
+            "codes": [
+              "reader_pull_present"
+            ],
+            "issues": []
+          }
+        },
+        "semantic_trigger_codes": [],
+        "semantic_decision_count": 0,
+        "generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 4258,
+            "output_tokens": 713,
+            "total_tokens": 4971
+          },
+          "latency_ms": 38079
+        },
+        "summary_generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 732,
+            "output_tokens": 271,
+            "total_tokens": 1003
+          },
+          "latency_ms": 15529
+        },
+        "structured_summary_generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 835,
+            "output_tokens": 422,
+            "total_tokens": 1257
+          },
+          "latency_ms": 15692
+        },
+        "entities_count": 8,
+        "foreshadowing_count": 5
+      },
+      "structured_summary": {
+        "has_high_point_markers": true,
+        "high_point_markers": [
+          "林照出手压制失控感应钟",
+          "沈砚当场识破异常",
+          "共鸣测试触发银纹显现与大厅异动",
+          "匿名讯息邀约旧钟楼并发出威胁"
+        ],
+        "has_reader_pull_marker": true,
+        "reader_pull_marker": {
+          "has_pull": true,
+          "pull_type": "mystery_threat",
+          "evidence": "结尾出现匿名讯息：‘别装了。今晚九点，旧钟楼。我们接受真正的你——或者，由监察会先找到你。’既揭示有人知晓林照秘密，也制造了立即推进下一章的威胁与悬念。"
+        },
+        "key_events_count": 9,
+        "main_plot_advanced": true
+      },
+      "retrieval": {
+        "route_present": true,
+        "retrieval_route": {
+          "intent": "write_context",
+          "query_text": "**章节目标：**建立主角的“被接纳/不被接纳”核心困境，抛出主要关系与世界规则，引发读者继续阅读。  \n\n**关键节拍：**  \n1. 主角在一次日常场景中因“与众不同”被边缘化，明确其内心渴望：被看见、被认可。  \n2. 一个小事件失控，暴露主角隐藏的能力/秘密/过去，使其处境更尴尬。  \n3. 关键配角登场：表面冷淡或怀疑，却成为唯一认真观察主角的人。  \n4. 主角被迫做出第一次选择：继续伪装融入，或承认真实自我。  \n5. 选择未真正完成前，更大的外部压力降临，证明问题无法再回避。  \n\n**结尾钩子：**主角刚以为秘密还能掩盖，却收到一条信息/看到一个证据：有人早已知道他的真实身份，并主动向他发出“接纳”或“审判”的邀请。\n\n## Chapter 1 Beat Sheet  \n**Project:** *acceptance_v04_v06*  \n**Chapter:** 1\n\n### Beat 1: The Controlled Routine\n- **Objective:** Establish the protagonist’s ordinary world and show their need to maintain control, order, or emotional distance.\n- **Pressure:** Something in their environment subtly challenges that control—an interaction, obligation, or reminder they cannot fully avoid.\n- **Visible Progression:** The chapter opens in a familiar routine, but a small disruption forces the protagonist to acknowledge that the day will not go as planned.\n\n### Beat 2: The Unwanted Invitation\n- **Objective:** Present the inciting situation: the protagonist is asked, required, or cornered into engaging with something they would rather reject.\n- **Pressure:** Social expectation, guilt, duty, or practical necessity makes refusal difficult.\n- **Visible Progression:** What begins as a minor inconvenience becomes a real decision point; the protagonist can no longer remain passive.\n\n### Beat 3: Resistance and Rationalization\n- **Objective:** Show the protagonist trying to protect themselves by minimizing, resisting, or reframing the challenge.\n- **Pressure:** Other characters, circumstances, or internal discomfort keep pushing back against their excuses.\n- **Visible Progression:** The protagonist attempts a workaround or emotional retreat, but it fails, revealing that their usual defenses are less effective than they believe.\n\n### Beat 4: A Crack in the Armor\n- **Objective:** Create the first meaningful emotional disturbance—something that touches the protagonist more deeply than expected.\n- **Pressure:** A revealing detail, unexpected kindness, mirrored pain, or public exposure forces them into vulnerability.\n- **Visible Progression:** The protagonist shifts from detached resistance to uneasy engagement; they are not accepting anything yet, but they are no longer untouched.\n\n### Beat 5: The Reluctant Step Forward\n- **Objective:** End the chapter with the protagonist making a small but significant choice toward engagement, even if framed as temporary or reluctant.\n- **Pressure:** The cost of walking away now feels higher than the cost of staying involved.\n- **Visible Progression:** The protagonist commits to the next action, conversation, or encounter, setting the story in motion and signaling the beginning of their acceptance arc.\n\nIf you want, I can also turn this into:\n1. a **scene-by-scene outline**,  \n2. a **more genre-specific beat sheet** (romance, literary, fantasy, etc.), or  \n3. a version tailored to a specific protagonist and premise.\n\nBelow is a **chapter 1 timeline scaffold** for **acceptance_v04_v06**, organized as ordered time points with **key events** and **causal dependencies**. Since no chapter text was provided, this is a **story-development timeline** built to fit a chapter that introduces a protagonist struggling with acceptance.\n\n## Chapter 1 Timeline\n\n| Time Point | Story Time | Key Event | Causal Dependency |\n|---|---|---|---|\n| T1 | Early morning | Protagonist is introduced in their ordinary routine, but something feels emotionally off: avoidance, tension, or denial. | Establishes baseline dissatisfaction; needed so later disruption has meaning. |\n| T2 | Shortly after | A triggering reminder appears: a letter, message, encounter, memory, or obligation tied to the central issue they have not accepted. | Happens because protagonist’s normal routine intersects with unresolved conflict. |\n| T3 | Mid-morning | Protagonist tries to dismiss or suppress the issue rather than engage with it. | Direct reaction to T2; shows resistance and defines the internal conflict. |\n| T4 | Late morning | A secondary character notices the protagonist’s behavior and pushes, questions, or challenges them. | Caused by the protagonist’s visible discomfort in T3. |\n| T5 | Around noon | A concrete external pressure arrives: deadline, family expectation, social event, return home, meeting, or confrontation that cannot be easily avoided. | Escalation from T2–T4; the unresolved issue now requires action. |\n| T6 | Early afternoon | Protagonist makes a coping choice: delay, lie, withdraw, overcompensate, or reluctantly agree. | Caused by pressure in T5 and their refusal to face the truth directly. |\n| T7 | Mid-afternoon | That coping choice creates a complication, making the original problem harder to ignore. | Consequence of T6; avoidance produces immediate stakes. |\n| T8 | Late afternoon | Protagonist has a brief reflective moment that hints at the deeper wound or fear behind their resistance. | Triggered by the complication in T7; first crack in emotional armor. |\n| T9 | Evening | A meaningful interaction, image, or memory reframes the issue slightly, though not enough to resolve it. | Builds on T8; opens possibility of growth without completing it. |\n| T10 | End of chapter / night | Chapter closes with a decision, realization, or looming event that commits the protagonist to the next step. | Result of all prior pressure; launches chapter 2. |\n\n## Causal Flow Summary\n\n**Ordinary routine**  \n→ reveals **emotional imbalance**  \n→ interrupted by **trigger/reminder**  \n→ protagonist responds with **avoidance**  \n→ avoidance is noticed, creating **interpersonal pressure**  \n→ external circumstances increase stakes  \n→ protagonist chooses an imperfect coping strategy  \n→ that choice backfires  \n→ backfire leads to reflection  \n→ reflection produces partial emotional shift  \n→ chapter ends with a forward-driving decision or threat\n\n## Compact Beat Version\n\n1. **Setup** — Show protagonist’s normal life and hidden tension.  \n2. **Inciting disturbance** — Something forces the unresolved issue into view.  \n3. **Resistance** — Protagonist refuses emotional engagement.  \n4. **Social/external pressure** — Another person or obligation tightens the conflict.  \n5. **Bad coping move** — Protagonist acts from denial.  \n6. **Immediate consequence** — That action worsens the situation.  \n7. **Moment of vulnerability** — A hint of what acceptance will require.  \n8. **Hook ending** — A choice or event propels the story onward.\n\n## If you want a more specific version\nI can also turn this into one of the following:\n\n- a **scene-by-scene timeline**\n- a **timeline with clock times**\n- a **character-specific emotional arc**\n- a **chapter outline in prose**\n- a **timeline based on your actual chapter draft** if you paste the text",
+          "limit": 3,
+          "max_chunk_chars": 260,
+          "compress_chars": 180,
+          "max_per_chapter": 2,
+          "dedupe_threshold": 0.82,
+          "source_weights": {
+            "chapter_chunk": 1.0,
+            "chapter_summary": 1.12
+          }
+        },
+        "retrieved_context_count": 0
+      }
+    },
+    {
+      "chapter_no": 2,
+      "plan": {
+        "outline_path": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06\\outlines\\chapter_0002_outline.md",
+        "compact_outline_path": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06\\outlines\\chapter_0002_outline_compact.md",
+        "volume_plan_path": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06\\outlines\\volume_0001_plan.md",
+        "beat_sheet_path": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06\\outlines\\chapter_0002_beats.md",
+        "timeline_path": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06\\outlines\\chapter_0002_timeline.md",
+        "outline_chars": 12959,
+        "compact_outline_chars": 316,
+        "volume_plan_chars": 2716,
+        "beat_sheet_chars": 2815,
+        "timeline_chars": 5350,
+        "generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 60,
+            "output_tokens": 2944,
+            "total_tokens": 3004
+          },
+          "latency_ms": 103108
+        },
+        "compact_generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 76,
+            "output_tokens": 316,
+            "total_tokens": 392
+          },
+          "latency_ms": 9810
+        },
+        "volume_plan_generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 76,
+            "output_tokens": 623,
+            "total_tokens": 699
+          },
+          "latency_ms": 24804
+        },
+        "beat_sheet_generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 64,
+            "output_tokens": 676,
+            "total_tokens": 740
+          },
+          "latency_ms": 28419
+        },
+        "timeline_generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 59,
+            "output_tokens": 1399,
+            "total_tokens": 1458
+          },
+          "latency_ms": 39272
+        }
+      },
+      "write": {
+        "task_id": "3958a265-0ae1-455f-a0fc-46b4d1ecf40b",
+        "chapter_path": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06\\chapters\\chapter_0002.md",
+        "gate_result": "pass",
+        "gate_level": "warning",
+        "blocking_reasons": [],
+        "warning_reasons": [
+          "foreshadowing_warning",
+          "high_point_density_low"
+        ],
+        "checker_summary": {
+          "consistency": {
+            "status": "completed",
+            "severity": "info",
+            "score": 0.98,
+            "codes": [
+              "consistency_ok"
+            ],
+            "issues": []
+          },
+          "character": {
+            "status": "completed",
+            "severity": "info",
+            "score": 0.89,
+            "codes": [
+              "character_ok"
+            ],
+            "issues": [
+              {
+                "character": "林照",
+                "severity": "minor",
+                "text_evidence": "“和你无关。”……“你也是其中一个？”",
+                "reason": "林照这里的回应比“克制低调、习惯隐忍退让”略显锋利直接，但在被持续盯视、秘密险些暴露的高压情境下，这种防备性反击可以成立，不足以算明显出格。由于其既有画像仅来自1章，属于弱信号，应谨慎判断。"
+              },
+              {
+                "character": "沈砚",
+                "severity": "minor",
+                "text_evidence": "把一瓶水放到桌边……替他按灭了感应匣……“是给你一次补救。”",
+                "reason": "沈砚表现出一定干预和援手意味，较“冷静寡言、观察锐利、带压迫感”的初印象多了些主动介入。但他的台词依旧克制、信息掌控感强，也没有变得热情外露，因此更像是形象扩展，而非明确偏离。"
+              }
+            ]
+          },
+          "continuity": {
+            "status": "completed",
+            "severity": "info",
+            "score": 0.91,
+            "codes": [
+              "continuity_ok"
+            ],
+            "issues": [
+              "沈砚对匿名讯息与旧钟楼之约的知情略显跳跃，草稿未交代他如何得知，虽可由其一直观察林照推断，但衔接还可更明确。",
+              "章节大体延续了上一章的紧张状态，但对“测试后被要求留下”这一直接后果没有展开，导师或监察层面的压力在本章中暂时淡出，连续性上稍弱。",
+              "大纲中“周围人的反应出现分化”已有轻微体现，但呈现较少，更多还是笼统的怀疑与围观，层次可以再丰富些。"
+            ]
+          },
+          "pacing": {
+            "status": "skipped",
+            "severity": "info",
+            "score": null,
+            "codes": [],
+            "issues": []
+          },
+          "foreshadowing": {
+            "status": "completed",
+            "severity": "warning",
+            "score": 0.5,
+            "codes": [],
+            "issues": [
+              "3 historical foreshadowing item(s) may be contradicted in current draft."
+            ]
+          },
+          "high_point": {
+            "status": "completed",
+            "severity": "warning",
+            "score": 0.52,
+            "codes": [
+              "high_point_density_low",
+              "high_point_not_aligned_with_beats"
+            ],
+            "issues": [
+              "High-point density looks low against chapter beat count.",
+              "High-point markers are weakly aligned with beats/timeline."
+            ]
+          },
+          "reader_pull": {
+            "status": "completed",
+            "severity": "info",
+            "score": 0.8,
+            "codes": [
+              "reader_pull_present"
+            ],
+            "issues": []
+          }
+        },
+        "semantic_trigger_codes": [],
+        "semantic_decision_count": 0,
+        "generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 6921,
+            "output_tokens": 821,
+            "total_tokens": 7742
+          },
+          "latency_ms": 37027
+        },
+        "summary_generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 714,
+            "output_tokens": 350,
+            "total_tokens": 1064
+          },
+          "latency_ms": 10907
+        },
+        "structured_summary_generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 817,
+            "output_tokens": 393,
+            "total_tokens": 1210
+          },
+          "latency_ms": 13383
+        },
+        "entities_count": 5,
+        "foreshadowing_count": 3
+      },
+      "structured_summary": {
+        "has_high_point_markers": true,
+        "high_point_markers": [
+          "旧校徽触发记忆闪回与银纹险些暴露",
+          "沈砚出手掩护林照",
+          "旧钟楼找到与银纹档案一致的编号",
+          "沈砚在钟楼现身揭破林照更深的隐瞒"
+        ],
+        "has_reader_pull_marker": true,
+        "reader_pull_marker": {
+          "has_pull": true,
+          "pull_type": "mystery_revelation_and_confrontation",
+          "evidence": "旧纸上的编号与林照银纹初现当日档案完全一致，而沈砚随即现身，直指林照隐瞒的不只是异能痕，制造出更大秘密即将揭开的悬念。"
+        },
+        "key_events_count": 7,
+        "main_plot_advanced": true
+      },
+      "retrieval": {
+        "route_present": true,
+        "retrieval_route": {
+          "intent": "write_context",
+          "query_text": "**章节目标：**推动主角从“被动适应”转向“主动试探”，建立核心关系张力，并埋下“接纳”主题的第一层冲突。  \n\n**关键节拍：**  \n1. 主角进入新环境后表面顺从，实际处处格格不入，第一次明显感到自己被观察或评判。  \n2. 一位关键人物主动接近，释放善意，但话语或举动触到主角防备，引发微妙对峙。  \n3. 主角在小事件中犯错/失控，暴露内心创伤或秘密的一角，周围人的反应出现分化。  \n4. 关键人物没有揭穿主角，反而给出一次补救机会，使主角短暂动摇。  \n5. 主角决定继续隐瞒真正目的，同时开始留意这群人是否值得信任。  \n\n**结尾钩子：**主角意外发现一条与自己过去直接相关的线索，而最不该知道的人，正站在身后。\n\n## Chapter 2 Beat Sheet — *acceptance_v04_v06*\n\n### Beat 1: Reentry into the Problem\n- **Objective:** The protagonist tries to return to normal after the disruption of Chapter 1 and convince themself they still have control.\n- **Pressure:** The world immediately refuses to cooperate: a person, place, or reminder tied to the central conflict forces them to confront what they would rather avoid.\n- **Visible Progression:** What began as private discomfort becomes externalized. By the end of the beat, the protagonist is no longer just thinking about the issue—they are actively dealing with it in scene.\n\n### Beat 2: First Attempt at Avoidance\n- **Objective:** The protagonist chooses a practical, manageable action that lets them feel useful without emotionally engaging with the deeper truth.\n- **Pressure:** That action is complicated by someone else’s needs, expectations, or scrutiny. The protagonist can’t stay detached as easily as they planned.\n- **Visible Progression:** The protagonist moves from passive resistance to a concrete decision. Even if the choice is avoidance, it creates momentum and commits them to a path.\n\n### Beat 3: Friction with Another Character\n- **Objective:** The protagonist tries to maintain their preferred narrative—about themself, the situation, or what “should” happen.\n- **Pressure:** Another character challenges that narrative, either gently or directly, exposing a gap between what the protagonist says and what they actually feel.\n- **Visible Progression:** Subtext becomes text. Tension that may have been internal now appears in dialogue, behavior, or conflict, raising the emotional stakes.\n\n### Beat 4: Small Crack in the Armor\n- **Objective:** The protagonist wants to regain composure and prove they are unaffected.\n- **Pressure:** A moment of vulnerability—triggered by memory, failure, embarrassment, or unexpected kindness—makes that impossible.\n- **Visible Progression:** The protagonist reveals something, however small: a hesitation, confession, slip, or emotional reaction. This is the first visible sign that they may not be able to keep denying reality.\n\n### Beat 5: End-of-Chapter Turn\n- **Objective:** The protagonist tries to leave the scene with their old position intact.\n- **Pressure:** A new piece of information, a consequence, or a personal realization makes that position untenable.\n- **Visible Progression:** The chapter ends with a shift: the protagonist accepts a limited truth, agrees to a next step, or realizes the conflict is bigger/more personal than they thought. This launches Chapter 3 with a clearer trajectory.\n\nIf you want, I can also turn this into:\n1. a **character-specific beat sheet**,  \n2. a **scene-by-scene outline**, or  \n3. a version tailored to a specific genre like **literary, romance, fantasy, or upmarket fiction**.\n\nI don’t have the actual Chapter 2 text, so I can’t extract a canon timeline from the manuscript. But I can create a **working Chapter 2 timeline** based on the project title **_acceptance_** and the likely function of an early chapter.\n\n## Chapter 2 Timeline\n**Project:** *acceptance_v04_v06*  \n**Chapter:** 2\n\n| Time Point | Event | Causal Dependency | Story Function |\n|---|---|---|---|\n| **T0 – Early morning** | Protagonist wakes carrying the emotional residue of Chapter 1’s conflict/loss/revelation. They try to return to routine but are unsettled. | Depends on Chapter 1 establishing the wound/problem. | Reorients the reader and shows the problem is persistent, not resolved. |\n| **T1 – Morning trigger** | A reminder appears: message, object, person, location, or obligation tied to what the protagonist is avoiding. | Caused by unresolved issue from T0 / Chapter 1. | Externalizes the internal conflict; starts the chapter movement. |\n| **T2 – First avoidance response** | Protagonist minimizes, deflects, or denies the significance of the trigger. They choose inaction or a superficial response. | Trigger at T1 provokes defensive behavior. | Reinforces resistance to acceptance. |\n| **T3 – Secondary pressure arrives** | Another character pushes the issue: asks a question, makes a demand, offers concern, or forces proximity to the problem. | T2 avoidance creates tension that invites outside pressure. | Raises stakes and narrows the protagonist’s options. |\n| **T4 – Mid-morning confrontation** | Protagonist enters a conversation or situation they hoped to avoid. Information emerges that complicates their earlier assumptions. | T3 forces engagement. | Moves the chapter from evasion into partial truth. |\n| **T5 – Emotional recoil** | After the confrontation, the protagonist reacts badly: anger, withdrawal, shame, defensiveness, or numbness. | New information at T4 destabilizes their self-protective narrative. | Shows that acceptance is not linear; deepens character realism. |\n| **T6 – Quiet interval / reflection beat** | Alone, the protagonist notices something they can no longer fully deny. This is not acceptance yet—just a crack in the wall. | Emotional recoil at T5 creates a pause where insight can surface. | Introduces interior change without resolving the arc too quickly. |\n| **T7 – Concrete choice point** | A decision must be made: answer the message, attend the event, return the object, tell the truth, meet someone, or stop running. | T6 reflection makes continued passivity harder to justify. | Converts emotional tension into plot action. |\n| **T8 – Small but meaningful action** | Protagonist takes one limited step toward engagement. Not full transformation—just proof of movement. | T7 decision leads to action. | Marks the chapter’s forward progress and theme of acceptance beginning to form. |\n| **T9 – Immediate consequence** | That small action produces a response: another character softens, a new problem appears, a path opens, or stakes escalate. | T8 action changes the situation. | Ensures the chapter ends with momentum, not stasis. |\n| **T10 – Chapter close / hook** | Protagonist realizes the issue is larger or more personal than they admitted. A new question or looming encounter sets up Chapter 3. | T9 consequence reveals next-stage conflict. | Creates narrative propulsion into the next chapter. |\n\n---\n\n## Cause-and-Effect Chain\nA simplified dependency flow:\n\n**Chapter 1 wound/problem**  \n→ **T0 unsettled routine**  \n→ **T1 reminder/trigger**  \n→ **T2 avoidance**  \n→ **T3 outside pressure**  \n→ **T4 forced confrontation**  \n→ **T5 emotional recoil**  \n→ **T6 partial self-recognition**  \n→ **T7 decision point**  \n→ **T8 small action toward acceptance**  \n→ **T9 consequence**  \n→ **T10 setup for Chapter 3**\n\n---\n\n## Key Events to Emphasize\nIf Chapter 2 is meant to deepen the theme of **acceptance**, the most important beats are:\n\n1. **The trigger**  \n   Something makes avoidance impossible.\n\n2. **The failed defense**  \n   The protagonist tries not to engage and fails.\n\n3. **The confrontation**  \n   Another person or circumstance forces truth into the open.\n\n4. **The first internal shift**  \n   The protagonist doesn’t fully accept reality, but they stop fully denying it.\n\n5. **The first action aligned with truth**  \n   A small choice proves the arc has begun.\n\n---\n\n## Chapter 2 Arc Summary\nThis chapter likely functions as the moment when the protagonist moves from:\n\n- **private resistance**\nto\n- **externally pressured engagement**\nto\n- **the first reluctant step toward acceptance**\n\n---\n\n## Compact Version\nIf you want a shorter timeline outline:\n\n1. **Morning:** protagonist tries to act normal.  \n2. **Trigger appears:** reminder of unresolved issue.  \n3. **Avoidance:** protagonist deflects.  \n4. **Pressure:** someone/something forces engagement.  \n5. **Confrontation:** difficult truth surfaces.  \n6. **Retreat:** protagonist reacts emotionally.  \n7. **Reflection:** they recognize part of the truth.  \n8. **Choice:** they take one small step forward.  \n9. **Consequence:** that step changes the stakes.  \n10. **End hook:** next conflict is set.\n\nIf you want, I can also turn this into one of these:\n- a **scene-by-scene Chapter 2 outline**\n- a **beat sheet with emotional intensity**\n- a **timeline tailored to your actual Chapter 2 text** if you paste it here.\n\n第1章：林照一直隐瞒自己手腕上的淡银色“异能痕”，在学院里被视为可疑对象，长期遭到疏离。晨训时他原想继续回避午后的共鸣测试，但训练场感应钟失控，他下意识出手压制异常，当众暴露了自己并非普通“低适配者”。新来的高个少年沈砚察觉到这不是设备故障，而是有人强行压频，并明显注意到了林照袖口下的银纹。\n\n下午的共鸣测试中，林照被强制参加，原本打算继续伪装低适配，却在阵盘启动时引发银纹扩散和大厅异动，再次引起导师怀疑，被要求测试后留下。林照一度想承认自己属于学院明令限制接触核心装置的危险类型，但最终还是否认。散场后，沈砚警告他迟早压不住秘密。紧接着，林照收到匿名讯息，约他晚上九点去旧钟楼，并表示“接受真正的他”，否则监察会会先找到他。",
+          "limit": 4,
+          "max_chunk_chars": 260,
+          "compress_chars": 180,
+          "max_per_chapter": 2,
+          "dedupe_threshold": 0.82,
+          "source_weights": {
+            "chapter_chunk": 1.0,
+            "chapter_summary": 1.12
+          }
+        },
+        "retrieved_context_count": 2
+      }
+    },
+    {
+      "chapter_no": 3,
+      "plan": {
+        "outline_path": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06\\outlines\\chapter_0003_outline.md",
+        "compact_outline_path": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06\\outlines\\chapter_0003_outline_compact.md",
+        "volume_plan_path": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06\\outlines\\volume_0001_plan.md",
+        "beat_sheet_path": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06\\outlines\\chapter_0003_beats.md",
+        "timeline_path": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06\\outlines\\chapter_0003_timeline.md",
+        "outline_chars": 8611,
+        "compact_outline_chars": 318,
+        "volume_plan_chars": 1945,
+        "beat_sheet_chars": 3163,
+        "timeline_chars": 4244,
+        "generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 60,
+            "output_tokens": 1920,
+            "total_tokens": 1980
+          },
+          "latency_ms": 64622
+        },
+        "compact_generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 76,
+            "output_tokens": 329,
+            "total_tokens": 405
+          },
+          "latency_ms": 17990
+        },
+        "volume_plan_generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 76,
+            "output_tokens": 437,
+            "total_tokens": 513
+          },
+          "latency_ms": 15678
+        },
+        "beat_sheet_generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 64,
+            "output_tokens": 718,
+            "total_tokens": 782
+          },
+          "latency_ms": 30829
+        },
+        "timeline_generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 59,
+            "output_tokens": 1154,
+            "total_tokens": 1213
+          },
+          "latency_ms": 35831
+        }
+      },
+      "write": {
+        "task_id": "7572be1c-cc9a-42b1-8cdf-ee2b00c62f69",
+        "chapter_path": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06\\chapters\\chapter_0003.md",
+        "gate_result": "pass",
+        "gate_level": "warning",
+        "blocking_reasons": [],
+        "warning_reasons": [
+          "foreshadowing_warning",
+          "high_point_density_low"
+        ],
+        "checker_summary": {
+          "consistency": {
+            "status": "completed",
+            "severity": "info",
+            "score": 0.95,
+            "codes": [
+              "consistency_conflict"
+            ],
+            "issues": [
+              "{'type': 'possible_unverified_detail', 'entity': '林照', 'detail': '新增了“银意/银纹/异能痕”的设定', 'severity': 'low', 'explanation': '已知记录仅说明林照背负秘密、长期戒备，并未明确其具体能力表现；该设定属于扩展而非直接冲突。'}",
+              "{'type': 'possible_unverified_detail', 'entity': '沈砚', 'detail': '被指定为林照的“临时协作对象”', 'severity': 'low', 'explanation': '既有记录中未出现该身份安排，但也没有任何信息否定两人协作，因此不构成明确矛盾。'}"
+            ]
+          },
+          "character": {
+            "status": "completed",
+            "severity": "info",
+            "score": 0.91,
+            "codes": [
+              "character_ok"
+            ],
+            "issues": [
+              {
+                "character": "沈砚",
+                "severity": "minor",
+                "evidence_strength": "moderate",
+                "description": "“厉声”喝止相比前两章一贯的冷静克制略显外放，但发生在失控瞬间，属于情势推动下的短暂升级，不足以构成明显出戏。"
+              },
+              {
+                "character": "林照",
+                "severity": "minor",
+                "evidence_strength": "moderate",
+                "description": "失控初期他“连声让众人别靠近、别上报、给他一点时间”，主动试图安抚全场，姿态比既有印象中的自保与隐忍更外向一些；不过其动机仍是压事、控风险、避免暴露，和既有性格基本相容。"
+              }
+            ]
+          },
+          "continuity": {
+            "status": "completed",
+            "severity": "info",
+            "score": 0.93,
+            "codes": [
+              "continuity_ok"
+            ],
+            "issues": [
+              "公开校准任务的触发与安排较为顺畅，但从深夜钟楼对峙直接切到“先活过今天再问”后，次日通知来得很快，时间推进略显紧凑。",
+              "章节大体符合提纲中的“立场相左却能力很强的角色临时搭档”，但冲突主要集中在沈砚的点破与林照的回避，旧伤被揭开的层次还不算特别充分。",
+              "结尾匿名信息与本章开头旧钟楼匿名线索形成呼应，但如果严格对照上一章，读者可能会追问：钟楼旧纸上的具体字句和编号信息为何在本章几乎未被继续处理。"
+            ]
+          },
+          "pacing": {
+            "status": "completed",
+            "severity": "info",
+            "score": 0.75,
+            "codes": [],
+            "issues": []
+          },
+          "foreshadowing": {
+            "status": "completed",
+            "severity": "warning",
+            "score": 0.5,
+            "codes": [],
+            "issues": [
+              "2 historical foreshadowing item(s) may be contradicted in current draft."
+            ]
+          },
+          "high_point": {
+            "status": "completed",
+            "severity": "warning",
+            "score": 0.52,
+            "codes": [
+              "high_point_density_low",
+              "high_point_not_aligned_with_beats"
+            ],
+            "issues": [
+              "High-point density looks low against chapter beat count.",
+              "High-point markers are weakly aligned with beats/timeline."
+            ]
+          },
+          "reader_pull": {
+            "status": "completed",
+            "severity": "info",
+            "score": 0.8,
+            "codes": [
+              "reader_pull_present"
+            ],
+            "issues": []
+          }
+        },
+        "semantic_trigger_codes": [
+          "setting_conflict",
+          "route_branch"
+        ],
+        "semantic_decision_count": 2,
+        "generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 7414,
+            "output_tokens": 850,
+            "total_tokens": 8264
+          },
+          "latency_ms": 37567
+        },
+        "summary_generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 850,
+            "output_tokens": 423,
+            "total_tokens": 1273
+          },
+          "latency_ms": 16213
+        },
+        "structured_summary_generation": {
+          "provider": "openai",
+          "model": "gpt-5.4",
+          "usage": {
+            "input_tokens": 953,
+            "output_tokens": 294,
+            "total_tokens": 1247
+          },
+          "latency_ms": 13558
+        },
+        "entities_count": 7,
+        "foreshadowing_count": 3
+      },
+      "structured_summary": {
+        "has_high_point_markers": true,
+        "high_point_markers": [
+          "公开校准现场失控",
+          "林照当众暴露银纹救场",
+          "救人后遭集体排斥",
+          "收到匿名警告"
+        ],
+        "has_reader_pull_marker": true,
+        "reader_pull_marker": {
+          "has_pull": true,
+          "pull_type": "mystery_threat",
+          "evidence": "结尾匿名讯息称对方知道林照隐瞒的不止异能痕，并警告他下一次别再装作能被所有人接受。"
+        },
+        "key_events_count": 7,
+        "main_plot_advanced": true
+      },
+      "retrieval": {
+        "route_present": true,
+        "retrieval_route": {
+          "intent": "write_context",
+          "query_text": "**章节目标**：让主角在一次被迫协作中，初步直面“无法被所有人接受”的现实，并埋下与关键人物关系转折的伏笔。  \n\n**关键节拍**：  \n1. 主角因前两章余波被推到风口浪尖，不得不参加一场公开任务/活动。  \n2. 与一名立场相左却能力很强的角色临时搭档，冲突不断，旧伤被揭开。  \n3. 任务中出现意外，主角原本想用讨好和退让解决，却导致局面更糟。  \n4. 在压力下，主角第一次做出不求认同、只求正确的选择，虽招来非议，却救下关键结果。  \n5. 搭档因此对主角改观，但旁观者的误解反而进一步扩大。  \n\n**结尾钩子**：活动结束后，主角收到一条匿名信息：有人知道他一直隐瞒的真相，并要求“下一次，别再装作能被所有人接受”。\n\nHere’s a **Chapter 3 beat sheet** with **5 beats**, designed for an early-story chapter where the protagonist is still resisting the central emotional truth implied by *Acceptance*.\n\n## Chapter 3 Beat Sheet\n\n### Beat 1: Forced Contact\n- **Objective:** The protagonist tries to get through the day while avoiding the person, place, or issue they most don’t want to face.\n- **Pressure:** Circumstances force direct contact anyway: an unexpected message, a reassignment, a family obligation, or a public encounter removes their ability to keep distance.\n- **Visible Progression:** What was avoidable in earlier chapters becomes immediate and unavoidable here; the protagonist is now in the same space as the conflict.\n\n### Beat 2: Keep It Functional\n- **Objective:** The protagonist attempts to maintain control by treating the interaction as purely practical—sticking to facts, tasks, or logistics.\n- **Pressure:** The other party refuses to stay on the surface, either by asking a personal question, referencing shared history, or exposing a contradiction in the protagonist’s behavior.\n- **Visible Progression:** The conversation shifts from external business to emotional territory, even if the protagonist keeps resisting it.\n\n### Beat 3: Small Crack in the Armor\n- **Objective:** The protagonist tries to reassert distance and protect themselves from vulnerability.\n- **Pressure:** Something concrete undermines their narrative: a detail they didn’t know, an act of kindness they didn’t expect, or evidence that the situation is more complicated than they believed.\n- **Visible Progression:** The protagonist’s certainty weakens; they don’t change sides yet, but doubt enters where there was only defensiveness before.\n\n### Beat 4: Public or Personal Escalation\n- **Objective:** The protagonist wants to end the interaction and retreat before they lose control.\n- **Pressure:** A new complication raises the stakes—someone else walks in, a deadline hits, emotions spill over, or an external problem demands cooperation.\n- **Visible Progression:** Retreat is no longer a clean option; the protagonist must act in relation to the conflict rather than simply avoid it.\n\n### Beat 5: Choice That Signals the Theme\n- **Objective:** The protagonist tries to preserve their old stance while minimizing fallout.\n- **Pressure:** They are forced into a small but meaningful choice: help or withhold, stay or leave, admit one truth or continue lying.\n- **Visible Progression:** They make a limited move toward acceptance—not full surrender, but a visible step. By chapter’s end, their behavior shows change even if their self-understanding has not caught up yet.\n\n## Chapter-End Turn\n- The protagonist does **not** fully accept the truth/situation/person yet.\n- But they can no longer honestly pretend nothing has shifted.\n- This chapter should end with a **quiet destabilization** rather than a major resolution.\n\nIf you want, I can also turn this into a **scene-by-scene beat sheet** or tailor it to a specific genre like **romance, literary, fantasy, or family drama**.\n- Route A: reveal identity and ask council support.\n- Route B: stay undercover and track the mole.\n\n\nI don’t have the actual text of Chapter 3, so I can’t extract a factual timeline from it.\n\nIf you want, paste the chapter and I can turn it into a precise event timeline.  \nFor now, here’s a clean chapter timeline scaffold you can use for **acceptance_v04_v06 — Chapter 3**.\n\n---\n\n## Chapter 3 Timeline\n\n| Time Point | Event | Immediate Outcome | Causal Dependency |\n|---|---|---|---|\n| T0 — Opening beat | Chapter opens with the protagonist in the aftermath of Chapter 2’s decision/revelation | Establishes emotional and narrative state | Depends on final event of Chapter 2 |\n| T1 — Inciting development | A new complication, request, or discovery forces the protagonist to act | Raises stakes and gives Chapter 3 its forward motion | Caused by T0 situation being unresolved |\n| T2 — First response | Protagonist attempts a controlled or low-risk response | Reveals goal, fear, or hesitation | Depends on T1 introducing pressure |\n| T3 — Obstacle/interruption | Another character, external problem, or internal doubt blocks progress | Escalates tension | Caused by limitations in T2 |\n| T4 — Key interaction | Important conversation/confrontation occurs | New information, emotional shift, or changed relationship | Depends on T3 forcing direct engagement |\n| T5 — Mid-chapter turn | Something is revealed, misunderstood, or reinterpreted | Changes what the protagonist thinks they should do | Caused by T4 interaction |\n| T6 — Decision point | Protagonist makes a more committed choice | Locks in direction for back half of chapter | Depends on T5 changing understanding |\n| T7 — Consequence sequence | The choice produces immediate fallout | Stakes become more personal or urgent | Caused directly by T6 |\n| T8 — Emotional beat | Protagonist processes what the consequence means | Deepens theme, especially around “acceptance” | Depends on T7 fallout |\n| T9 — Chapter climax | A decisive action, confrontation, or realization | Resolves the chapter’s central tension, partially or temporarily | Built from T1–T8 escalation |\n| T10 — Exit hook | Final image, line, or reveal points toward Chapter 4 | Creates anticipation and narrative carryover | Depends on result of T9 |\n\n---\n\n## Causal Flow, Simplified\n\n**End of Chapter 2**  \n→ creates the unresolved emotional/problem state of **T0**  \n→ leads to a new pressure at **T1**  \n→ prompts an initial attempt at **T2**  \n→ which fails or is complicated at **T3**  \n→ forcing a more direct exchange at **T4**  \n→ producing the shift/reveal at **T5**  \n→ enabling the decision at **T6**  \n→ causing fallout at **T7**  \n→ which triggers reflection at **T8**  \n→ culminating in the climax at **T9**  \n→ and setting up Chapter 4 at **T10**\n\n---\n\n## If you want a more story-specific version, use this format\n\n### Ordered Time Points\n1. **Opening state:**  \n   - Where the protagonist is physically/emotionally  \n   - What unresolved issue carries over\n\n2. **Trigger event:**  \n   - What happens to disrupt the status quo\n\n3. **Initial reaction:**  \n   - What the protagonist tries first\n\n4. **Complication:**  \n   - Why that first attempt doesn’t work\n\n5. **Important exchange or discovery:**  \n   - Who is involved  \n   - What changes\n\n6. **Commitment:**  \n   - What the protagonist decides to do next\n\n7. **Immediate consequence:**  \n   - What goes wrong/right because of that choice\n\n8. **Chapter climax:**  \n   - Most intense moment in the chapter\n\n9. **Aftermath / hook:**  \n   - What the reader now expects next\n\n---\n\n## Example dependency notation\n\nYou can also write it like this:\n\n- **T1 happens because** the protagonist has not resolved the previous conflict.\n- **T3 happens because** the protagonist’s first plan in T2 is flawed.\n- **T5 happens because** the obstacle in T3 forces a confrontation.\n- **T7 happens because** the protagonist commits to a risky choice in T6.\n- **T10 happens because** the climax in T9 changes the story situation.\n\n---\n\nIf you want, I can also give you one of these in either of these formats:\n1. **Beat sheet**\n2. **Table with timestamps/morning-afternoon-evening markers**\n3. **Scene-by-scene causal chain**\n4. **A fully invented Chapter 3 timeline based on the title/theme “acceptance”**\n- Branch point: choose Route A or Route B before next chapter.\n\n第2章概要：\n\n林照整天装作若无其事，但晨训场上众人对他的异样与怀疑比前一天更明显。他刻意埋头做最脏最重的杂活，试图避开关注。沈砚在器械室找到他，指出他一夜未睡，也提醒他已经被人盯上；并直言如果自己想揭穿他，昨天下午就足够了。\n\n林照在整理时碰到一枚旧校徽，突发零碎记忆：断裂白墙、警报声、以及一句“别让他们看见”。情绪失控下，他捏弯校徽，险些引发手腕银纹与感应匣异常。沈砚及时出手压下异状，并对外谎称只是线路老化，替他遮掩。随后沈砚警告林照，今晚不要一个人去送死，暗示他已经察觉匿名讯息的事。\n\n当夜，林照仍独自前往旧钟楼，按照匿名讯息找到藏在砖缝中的一张旧纸。纸上写着一行字和一个编号，而那个编号与他银纹最初出现那天的档案编号完全一致，说明他的异能痕与过去某件被掩藏的事件直接相关。就在他准备继续查看时，沈砚现身，当面指出林照隐瞒的恐怕不只是异能痕。",
+          "limit": 4,
+          "max_chunk_chars": 260,
+          "compress_chars": 180,
+          "max_per_chapter": 2,
+          "dedupe_threshold": 0.82,
+          "source_weights": {
+            "chapter_chunk": 1.0,
+            "chapter_summary": 1.12
+          }
+        },
+        "retrieved_context_count": 4
+      }
+    }
+  ],
+  "init": {
+    "project_root": "E:\\myproject\\AI-NovelWriting\\.tmp_acceptance_runs\\acceptance_v04_v06",
+    "title": "acceptance_v04_v06"
+  },
+  "presentation": {
+    "status_report": {
+      "query_type": "status_report",
+      "generated_at": "2026-03-12T03:45:40.982024+00:00",
+      "project": {
+        "project_id": "fdd88398-d330-4663-9f19-5094ed2cb656",
+        "title": "acceptance_v04_v06",
+        "status": "draft_available",
+        "active_volume": 1,
+        "active_chapter": 3
+      },
+      "progress": {
+        "current_volume": 1,
+        "current_chapter": 3,
+        "completed_chapters": 3
+      },
+      "task_health": {
+        "total_tasks": 3,
+        "running_tasks": 0,
+        "failed_tasks": 0,
+        "completed_tasks": 3,
+        "latest_task": {
+          "task_id": "7572be1c-cc9a-42b1-8cdf-ee2b00c62f69",
+          "task_type": "write",
+          "task_status": "completed",
+          "current_step": "reviewed"
+        }
+      },
+      "summary_health": {
+        "total_summaries": 3,
+        "sync_issue_count": 0
+      },
+      "foreshadowing_health": {
+        "total_items": 11
+      },
+      "decision_health": {
+        "total_decisions": 2,
+        "latest_decision_type": "setting_conflict"
+      },
+      "entity_health": {
+        "total_entities": 20,
+        "character_count": 6,
+        "location_count": 14
+      },
+      "alerts": [],
+      "risk_level": "info"
+    },
+    "dashboard": {
+      "query_type": "dashboard",
+      "mode": "read_only",
+      "project_overview": {
+        "title": "acceptance_v04_v06",
+        "status": "draft_available",
+        "active_volume": 1,
+        "active_chapter": 3,
+        "completed_chapters": 3
+      },
+      "chapter_overview": {
+        "summary_coverage": {
+          "summary_count": 3,
+          "completed_chapters": 3
+        },
+        "foreshadowing_count": 11
+      },
+      "entity_overview": {
+        "total_entities": 20,
+        "type_counts": {
+          "character": 6,
+          "location": 14
+        }
+      },
+      "decision_overview": {
+        "total_decisions": 2,
+        "latest_decision_type": "setting_conflict"
+      },
+      "risk_panel": {
+        "risk_level": "info",
+        "alerts": []
+      }
+    },
+    "read_only_hash_match": true
+  },
+  "learn": {
+    "learn_payload": {
+      "task_id": "9cd73576-be01-40da-8c84-c9e13615f019",
+      "memory_record": {
+        "memory_id": "a6057d92-131c-4dbb-9f03-a256ff848008",
+        "memory_type": "hook_pattern",
+        "content": "Use a micro cliffhanger at ending to keep reader pull.",
+        "source_refs": [
+          "chapter_0002",
+          "chapter_0003"
+        ],
+        "created_at": "2026-03-12T03:45:41.023557+00:00"
+      }
+    },
+    "project_memory_total": 1
+  },
+  "decision_synthetic_coverage": {
+    "trigger_codes": [
+      "review_severe_issue",
+      "setting_conflict",
+      "route_branch"
+    ],
+    "decision_count": 3
+  },
+  "queries_snapshot": {
+    "progress": {
+      "query_type": "progress",
+      "progress": {
+        "current_volume": 1,
+        "current_chapter": 3,
+        "completed_chapters": 3
+      }
+    },
+    "tasks_count": 4,
+    "decisions_count": 5,
+    "entities_count": 20,
+    "foreshadowing_count": 11,
+    "summaries_count": 3,
+    "summary_sync_issue_count": 0,
+    "project_memory_count": 1,
+    "status_report_risk_level": "info"
+  },
+  "acceptance_checks": {
+    "v0_4": {
+      "plan_outputs_non_empty": true,
+      "retrieval_route_present_all_chapters": true,
+      "structured_summary_v05_fields_present": true,
+      "foreshadowing_checker_connected": true
+    },
+    "v0_5": {
+      "high_point_checker_connected": true,
+      "reader_pull_checker_connected": true,
+      "gatekeeper_has_level_and_reasons": true,
+      "non_blocking_checker_critical_not_forced_block": true
+    },
+    "v0_6": {
+      "presentation_read_only": true,
+      "learn_write_and_query": true,
+      "decision_trigger_coverage_three_types": true,
+      "semantic_decision_records_created": true
+    }
+  },
+  "acceptance_pass": true
+}
